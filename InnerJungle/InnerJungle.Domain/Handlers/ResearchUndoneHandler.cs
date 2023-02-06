@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace InnerJungle.Domain.Handlers
 {
-    public class ResearchUndoneHandler : Notifiable<Notification>, IHandler<UpdateResearchCommand>
+    public class ResearchUndoneHandler : Notifiable<Notification>, IHandler<MarkResearchAsUnDoneCommand>
     {
         private readonly IResearchRepository _repository;
 
-        public ICommandResult Handle(UpdateResearchCommand command)
+        public ICommandResult Handle(MarkResearchAsUnDoneCommand command)
         {
             command.Validate();
             if (command.IsValid)

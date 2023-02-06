@@ -6,11 +6,11 @@ using InnerJungle.Domain.Interfaces;
 
 namespace InnerJungle.Domain.Handlers
 {
-    public class ResearchDoneHandler : Notifiable<Notification>, IHandler<UpdateResearchCommand>
+    public class ResearchDoneHandler : Notifiable<Notification>, IHandler<MarkResearchAsDoneCommand>
     {
         private readonly IResearchRepository _repository;
 
-        public ICommandResult Handle(UpdateResearchCommand command)
+        public ICommandResult Handle(MarkResearchAsDoneCommand command)
         {
             command.Validate();
             if (command.IsValid)

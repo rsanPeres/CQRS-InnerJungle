@@ -1,4 +1,9 @@
-﻿using InnerJungle.Infra.Contexts;
+﻿using InnerJungle.Domain.Commands;
+using InnerJungle.Domain.Handlers;
+using InnerJungle.Domain.Handlers.Contracts;
+using InnerJungle.Domain.Interfaces;
+using InnerJungle.Infra.Contexts;
+using InnerJungle.Repository.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
@@ -21,6 +26,13 @@ namespace InnerJungle
             services.AddDbContext<ResearchContext>(opt =>
             opt.UseSqlServer(Configuration.GetConnectionString("InnerJungleResearches")));
 
+            services.AddTransient<IResearchRepository, ResearchRepository>();
+            services.AddTransient<IHandler<CreateResearchCommand>, CreateResearchHandler>();
+            services.AddTransient<IHandler<UpdateResearchCommand>, UpdateResearchHandler>();
+            services.AddTransient<IHandler<MarkResearchAsDoneCommand>, ResearchDoneHandler>();
+            services.AddTransient<IHandler<MarkResearchAsUnDoneCommand>, ResearchUndoneHandler>();
+
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "InnerJungleResearches", Version = "v1" });
@@ -40,6 +52,10 @@ namespace InnerJungle
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors(x => x
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
 
             app.UseAuthentication();
             app.UseAuthorization();
