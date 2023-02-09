@@ -4,7 +4,9 @@ using InnerJungle.Domain.Handlers.Contracts;
 using InnerJungle.Domain.Interfaces;
 using InnerJungle.Infra.Contexts;
 using InnerJungle.Repository.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
 namespace InnerJungle
@@ -23,8 +25,8 @@ namespace InnerJungle
             services.AddControllers();
 
 
-            services.AddDbContext<ResearchContext>(opt =>
-            opt.UseSqlServer(Configuration.GetConnectionString("InnerJungleResearches")));
+            services.AddDbContextPool<ResearchContext>(opt =>
+            opt.UseSqlServer(Configuration.GetConnectionString("innerJungle")));
 
             services.AddTransient<IResearchRepository, ResearchRepository>();
             services.AddTransient<IHandler<CreateResearchCommand>, CreateResearchHandler>();
@@ -38,6 +40,20 @@ namespace InnerJungle
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "InnerJungleResearches", Version = "v1" });
             });
 
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                    .AddJwtBearer(op =>
+                    {
+                        op.Authority = "https://securetoken.google.com/project-5642768471246822332";
+                        op.TokenValidationParameters = new TokenValidationParameters
+                        {
+                            ValidateIssuer = true,
+                            ValidIssuer = "https://securetoken.google.com/project-5642768471246822332",
+                            ValidateAudience = true,
+                            ValidAudience = "project-5642768471246822332",
+                            ValidateLifetime = true
+                        };
+                    });
+             
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InnerJungle.Tests", "InnerJ
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InnerJungle.Repository", "InnerJungle.Repository\InnerJungle.Repository.csproj", "{D3CA5779-4BFD-44F2-9A93-19CC73BDA12F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InnerJungle.Api", "InnerJungle.Api.csproj", "{3FDAC289-D756-44F6-BB1D-0AD8B9036DBB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InnerJungle.Api", "InnerJungle.Api\InnerJungle.Api.csproj", "{6D14CD8B-CD79-49E2-BF7A-2B32F417B1AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,10 @@ Global
 		{D3CA5779-4BFD-44F2-9A93-19CC73BDA12F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3CA5779-4BFD-44F2-9A93-19CC73BDA12F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3CA5779-4BFD-44F2-9A93-19CC73BDA12F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3FDAC289-D756-44F6-BB1D-0AD8B9036DBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3FDAC289-D756-44F6-BB1D-0AD8B9036DBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3FDAC289-D756-44F6-BB1D-0AD8B9036DBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3FDAC289-D756-44F6-BB1D-0AD8B9036DBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D14CD8B-CD79-49E2-BF7A-2B32F417B1AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D14CD8B-CD79-49E2-BF7A-2B32F417B1AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D14CD8B-CD79-49E2-BF7A-2B32F417B1AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D14CD8B-CD79-49E2-BF7A-2B32F417B1AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

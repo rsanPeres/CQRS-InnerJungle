@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\InnerJungle.Domain\InnerJungle.Domain.csproj" />
+    <ProjectReference Include="..\InnerJungle.Infra\InnerJungle.Infra.csproj" />
   </ItemGroup>
 
 </Project>

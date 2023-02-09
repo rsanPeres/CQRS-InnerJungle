@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "InnerJungle.Domain": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\Users\\rsanp\\"
+    }
+  }
+}

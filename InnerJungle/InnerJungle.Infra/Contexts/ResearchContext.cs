@@ -6,7 +6,9 @@ namespace InnerJungle.Infra.Contexts
     public class ResearchContext : DbContext
     {
         public DbSet<Research> Researches { get; set; }
-        public ResearchContext(DbContextOptions options) : base(options) { }
+        public ResearchContext(DbContextOptions<ResearchContext> options) : base(options) { }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
