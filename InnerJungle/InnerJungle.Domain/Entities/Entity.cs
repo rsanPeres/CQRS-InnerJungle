@@ -10,7 +10,7 @@ namespace InnerJungle.Domain.Entities
     {
         public Guid Id { get; private set; }
 
-        protected Entity(Guid id) 
+        protected Entity() 
         {
             Id = Guid.NewGuid();
         }

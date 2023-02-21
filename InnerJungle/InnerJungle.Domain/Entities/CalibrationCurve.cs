@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace InnerJungle.Domain.Entities
 {
-    public class CalibrationCurve : Entity
+    public class CalibrationCurve : Experiment
     {
-        public CalibrationCurve(Guid id) : base(id)
+        public CalibrationCurve() 
         {
 
         }

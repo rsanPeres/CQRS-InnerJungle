@@ -8,7 +8,7 @@ namespace InnerJungle.Domain.Entities
 {
     public class Experiment : Entity
     {
-        public Experiment(Guid id) : base(id)
+        public Experiment()
         {
 
         }

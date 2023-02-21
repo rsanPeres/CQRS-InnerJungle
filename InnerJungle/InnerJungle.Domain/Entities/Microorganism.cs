@@ -8,7 +8,7 @@ namespace InnerJungle.Domain.Entities
 {
     public class Microorganism : MicroorganismBase
     {
-        public Microorganism(Guid id) : base(id)
+        public Microorganism()
         {
 
         }

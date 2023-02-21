@@ -8,7 +8,7 @@ namespace InnerJungle.Domain.Entities
 {
     public class Institution : Entity
     {
-        public Institution(Guid id) : base(id)
+        public Institution()
         {
 
         }

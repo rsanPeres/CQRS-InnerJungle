@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace InnerJungle.Domain.Entities
 {
-    public class User :Entity
+    public class Seaweed : Microorganism
     {
-        public User()
+        public Seaweed()
         {
-
         }
     }
 }
