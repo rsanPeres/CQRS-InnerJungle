@@ -1,6 +1,6 @@
 ﻿namespace InnerJungle.Domain.Entities
 {
-    public class Virus : Microorganism
+    public class Virus : MicroorganismBase
     {
         public Virus()
         {

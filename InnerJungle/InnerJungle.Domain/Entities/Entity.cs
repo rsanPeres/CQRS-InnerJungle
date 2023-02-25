@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Flunt.Notifications;
 
 namespace InnerJungle.Domain.Entities
 {
-    public abstract class Entity: IEquatable<Entity>
+    public abstract class Entity : Notifiable<Notification>
     {
         public Guid Id { get; private set; }
 
-        protected Entity() 
+        protected Entity()
         {
             Id = Guid.NewGuid();
         }

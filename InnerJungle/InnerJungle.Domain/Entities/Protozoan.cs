@@ -1,6 +1,6 @@
 ﻿namespace InnerJungle.Domain.Entities
 {
-    public class Protozoan : Microorganism
+    public class Protozoan : MicroorganismBase
     {
         public Protozoan()
         {

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace InnerJungle.Domain.Entities
+﻿namespace InnerJungle.Domain.Entities
 {
-    public class Seaweed : Microorganism
+    public class Seaweed : MicroorganismBase
     {
         public Seaweed()
         {
