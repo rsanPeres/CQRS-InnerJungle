@@ -15,6 +15,7 @@ namespace InnerJungle.Domain.Entities
         public MicroorganismBase Microorganism { get; private set; }
         public IEnumerable<ExperimentBase> Experiments { get; private set; }
         public IEnumerable<CalibrationCurve> CalibrationCurves { get; private set; }
+        public bool Done { get; private set; }
 
         public Research(string title, User user) : base(title)
         {

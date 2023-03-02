@@ -12,6 +12,8 @@
 
   <ItemGroup>
     <Folder Include="ExtensionMethods\" />
+    <Folder Include="Interfaces\Authentication\" />
+    <Folder Include="Interfaces\Services\" />
   </ItemGroup>
 
 </Project>

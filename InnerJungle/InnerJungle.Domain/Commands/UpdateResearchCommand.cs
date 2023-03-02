@@ -1,6 +1,7 @@
 ﻿using Flunt.Notifications;
 using Flunt.Validations;
 using InnerJungle.Domain.Commands.Contracts;
+using InnerJungle.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,9 @@ namespace InnerJungle.Domain.Commands
     {
         public Guid Id { get; set; }
         public string Title { get; set; }
-        public string User { get; set; }
+        public User User { get; set; }
 
-        public UpdateResearchCommand(Guid id, string title, string user)
+        public UpdateResearchCommand(Guid id, string title, User user)
         {
             Id = id;
             Title = title;
@@ -28,7 +29,6 @@ namespace InnerJungle.Domain.Commands
                 new Contract<Notification>()
                 .Requires()
                 .IsGreaterOrEqualsThan(Title, 3, "Title", "Describe better the title")
-                .IsGreaterOrEqualsThan(User, 3, "User", "Invalid User")
             );
         }
     }

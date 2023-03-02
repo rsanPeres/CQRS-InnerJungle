@@ -8,9 +8,8 @@ namespace InnerJungle.Domain.Entities
 {
     public class CalibrationCurve : ExperimentBase
     {
-        public CalibrationCurve() 
+        public CalibrationCurve(string title) : base(title)
         {
-
         }
     }
 }

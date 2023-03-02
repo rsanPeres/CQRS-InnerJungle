@@ -8,10 +8,13 @@ namespace InnerJungle.Domain.Entities
     {
         public string UserName { get; private set; }
         public string Password { get; private set; }
+        public string FirstName { get; private set; }
+        public string LastName { get; private set; }
+        public string Email { get; private set; }
         public RoleNames Role { get; private set; }
         public string Cpf { get; private set; }
 
-        public User(string userName, string password, RoleNames role, string cpf)
+        public User(string userName, string password, RoleNames role, string cpf, string firstName, string lastName, string email)
         {
             Validate(userName, password, role, cpf);
             if (!IsValid)
@@ -21,6 +24,9 @@ namespace InnerJungle.Domain.Entities
             Password = password;
             Role = role;
             Cpf = cpf;
+            FirstName = firstName;
+            LastName = lastName;
+            Email = email;
         }
 
         public void SetEmployeeRole(RoleNames role)

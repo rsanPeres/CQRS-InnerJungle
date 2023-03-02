@@ -23,7 +23,6 @@ namespace InnerJungle.Domain.Handlers
                 var research = _repository.GetById(command.Id, command.User);
                 if (research != null)
                 {
-                    research.MarkAsUnDone();
                     _repository.Update(research);
                     return new GenericCommandResult(true, "saved Task", research);
                 }

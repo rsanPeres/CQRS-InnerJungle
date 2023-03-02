@@ -1,6 +1,7 @@
 ﻿using Flunt.Notifications;
 using Flunt.Validations;
 using InnerJungle.Domain.Commands.Contracts;
+using InnerJungle.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +13,9 @@ namespace InnerJungle.Domain.Commands
     public class MarkResearchAsUnDoneCommand : Notifiable<Notification>, ICommand
     {
         public Guid Id { get; set; }
-        public string User { get; set; }
+        public User User { get; set; }
 
-        public MarkResearchAsUnDoneCommand(Guid id, string user)
+        public MarkResearchAsUnDoneCommand(Guid id, User user)
         {
             Id = id;
             User = user;
@@ -30,7 +31,6 @@ namespace InnerJungle.Domain.Commands
             AddNotifications(
                 new Contract<Notification>()
                 .Requires()
-                .IsGreaterOrEqualsThan(User, 6, "User", "Invalid User")
             );
         }
     }

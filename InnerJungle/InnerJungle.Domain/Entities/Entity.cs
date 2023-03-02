@@ -2,7 +2,7 @@
 
 namespace InnerJungle.Domain.Entities
 {
-    public abstract class Entity : Notifiable<Notification>
+    public abstract class Entity : Notifiable<Notification>, IEquatable<Entity>
     {
         public Guid Id { get; private set; }
 

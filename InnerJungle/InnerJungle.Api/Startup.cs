@@ -2,6 +2,8 @@
 using InnerJungle.Domain.Handlers;
 using InnerJungle.Domain.Handlers.Contracts;
 using InnerJungle.Domain.Interfaces;
+using InnerJungle.Filters;
+using InnerJungle.Infra;
 using InnerJungle.Infra.Contexts;
 using InnerJungle.Repository.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -19,11 +21,12 @@ namespace InnerJungle
         }
 
         public IConfiguration Configuration { get; }
+        public WebApplicationBuilder builder = WebApplication.CreateBuilder();
 
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.AddControllers(options => options.Filters.Add<ErrorHandlingFilterAttribute>());
             services.AddControllers();
-
 
             services.AddDbContextPool<ResearchContext>(opt =>
             opt.UseSqlServer(Configuration.GetConnectionString("innerJungle")));
@@ -33,7 +36,7 @@ namespace InnerJungle
             services.AddTransient<IHandler<UpdateResearchCommand>, UpdateResearchHandler>();
             services.AddTransient<IHandler<MarkResearchAsDoneCommand>, ResearchDoneHandler>();
             services.AddTransient<IHandler<MarkResearchAsUnDoneCommand>, ResearchUndoneHandler>();
-
+            services.AddInfrastructure();
 
             services.AddSwaggerGen(c =>
             {
@@ -53,7 +56,7 @@ namespace InnerJungle
                             ValidateLifetime = true
                         };
                     });
-             
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -64,7 +67,8 @@ namespace InnerJungle
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("./v1/swagger.json", "InnerJungleResearches v1"));
             }
-
+            //app.UseMiddleware<ErrorHandlingMiddleware>();
+            app.UseExceptionHandler("/error");
             app.UseHttpsRedirection();
 
             app.UseRouting();

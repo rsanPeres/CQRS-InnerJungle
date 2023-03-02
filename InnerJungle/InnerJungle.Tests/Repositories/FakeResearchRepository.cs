@@ -1,4 +1,5 @@
 ﻿using InnerJungle.Domain.Entities;
+using InnerJungle.Domain.Enums;
 using InnerJungle.Domain.Interfaces;
 
 namespace InnerJungle.Tests.Repositories
@@ -9,27 +10,27 @@ namespace InnerJungle.Tests.Repositories
         {
         }
 
-        public IEnumerable<Research> GetAll(string user)
+        public IEnumerable<Research> GetAll(User user)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Research> GetAllDone(string user)
+        public IEnumerable<Research> GetAllDone(User user)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Research> GetAllUndone(string user)
+        public IEnumerable<Research> GetAllUndone(User user)
         {
             throw new NotImplementedException();
         }
 
-        public Research GetById(Guid id, string user)
+        public Research GetById(Guid id, User user)
         {
-            return new Research("inner", true, "Jungle");
+            return new Research("inner", new User("", "", RoleNames.Default, ""));
         }
 
-        public IEnumerable<Research> GetByPeriod(string user, DateTime date, bool done)
+        public IEnumerable<Research> GetByPeriod(User user, DateTime date, bool done)
         {
             throw new NotImplementedException();
         }
