@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace InnerJungle.Infra.migrations
 {
-    [DbContext(typeof(ResearchContext))]
+    [DbContext(typeof(DBContext))]
     partial class ResearchContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

@@ -2,24 +2,29 @@
 using InnerJungle.Domain.Commands.Contracts;
 using InnerJungle.Domain.Commands;
 using InnerJungle.Domain.Handlers.Contracts;
-using InnerJungle.Domain.Interfaces;
+using InnerJungle.Domain.Interfaces.Repositories;
 
 namespace InnerJungle.Domain.Handlers
 {
     public class ResearchDoneHandler : Notifiable<Notification>, IHandler<MarkResearchAsDoneCommand>
     {
-        private readonly IResearchRepository _repository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public ICommandResult Handle(MarkResearchAsDoneCommand command)
+        public ResearchDoneHandler(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
+        public async Task<ICommandResult> Handle(MarkResearchAsDoneCommand command)
         {
             command.Validate();
             if (command.IsValid)
             {
-                var research = _repository.GetById(command.Id, command.User);
+                var research = await _unitOfWork.Research.GetById(command.Id);
                 if (research != null)
                 {
                     research.MarkAsDone();
-                    _repository.Update(research);
+                    await _unitOfWork.Research.Update(research);
+                    await _unitOfWork.CompleteAsync();
                     return new GenericCommandResult(true, "saved Task", research);
                 }
             }

@@ -3,27 +3,28 @@ using InnerJungle.Domain.Commands;
 using InnerJungle.Domain.Commands.Contracts;
 using InnerJungle.Domain.Entities;
 using InnerJungle.Domain.Handlers.Contracts;
-using InnerJungle.Domain.Interfaces;
+using InnerJungle.Domain.Interfaces.Repositories;
 
 namespace InnerJungle.Domain.Handlers
 {
     public class CreateResearchHandler : Notifiable<Notification>, IHandler<CreateResearchCommand>
     {
-        private readonly IResearchRepository _repository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public CreateResearchHandler(IResearchRepository repository)
+        public CreateResearchHandler(IUnitOfWork unitOfWork)
         {
-            _repository = repository;
+            _unitOfWork = unitOfWork;
         }
-        public ICommandResult Handle(CreateResearchCommand command)
+        public async Task<ICommandResult> Handle(CreateResearchCommand command)
         {
             //fail fast validatiom
             command.Validate();
-            if(command.IsValid)
+            if (command.IsValid)
             {
                 var research = new Research(command.Title, command.User);
-            
-                _repository.Create(research);
+
+                await _unitOfWork.Research.Create(research);
+                await _unitOfWork.CompleteAsync();
 
                 return new GenericCommandResult(true, "saved Task", research);
             }

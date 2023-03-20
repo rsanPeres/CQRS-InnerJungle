@@ -1,10 +1,11 @@
-﻿using InnerJungle.Domain.Commands;
+﻿using InnerJungle.Application;
+using InnerJungle.Domain.Commands;
 using InnerJungle.Domain.Handlers;
 using InnerJungle.Domain.Handlers.Contracts;
-using InnerJungle.Domain.Interfaces;
-using InnerJungle.Filters;
+using InnerJungle.Domain.Interfaces.Repositories;
 using InnerJungle.Infra;
 using InnerJungle.Infra.Contexts;
+using InnerJungle.Repository;
 using InnerJungle.Repository.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -28,7 +29,7 @@ namespace InnerJungle
             //services.AddControllers(options => options.Filters.Add<ErrorHandlingFilterAttribute>());
             services.AddControllers();
 
-            services.AddDbContextPool<ResearchContext>(opt =>
+            services.AddDbContextPool<DBContext>(opt =>
             opt.UseSqlServer(Configuration.GetConnectionString("innerJungle")));
 
             services.AddTransient<IResearchRepository, ResearchRepository>();
@@ -37,6 +38,12 @@ namespace InnerJungle
             services.AddTransient<IHandler<MarkResearchAsDoneCommand>, ResearchDoneHandler>();
             services.AddTransient<IHandler<MarkResearchAsUnDoneCommand>, ResearchUndoneHandler>();
             services.AddInfrastructure();
+            services.AddApplication();
+            services.AddRepository();
+
+            var serviceProvider = services.BuildServiceProvider();
+            var logger = serviceProvider.GetService<ILogger<IResearchRepository>>();
+            services.AddSingleton(typeof(ILogger), logger);
 
             services.AddSwaggerGen(c =>
             {

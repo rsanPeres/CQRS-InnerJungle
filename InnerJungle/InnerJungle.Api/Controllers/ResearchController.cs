@@ -1,19 +1,17 @@
-﻿using InnerJungle.Domain.Commands;
+﻿using InnerJungle.Application.Authentication.Commands.User;
+using InnerJungle.Domain.Commands;
 using InnerJungle.Domain.Entities;
 using InnerJungle.Domain.Enums;
 using InnerJungle.Domain.Handlers;
-using InnerJungle.Domain.Interfaces;
-using InnerJungle.Filters;
+using InnerJungle.Domain.Interfaces.Repositories;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Xml.Linq;
 
 namespace InnerJungle.Api.Controllers
 {
     [ApiController]
     [Route("v1/researches")]
-    [Authorize]
     public class ResearchController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -22,16 +20,16 @@ namespace InnerJungle.Api.Controllers
         {
             _mediator = mediator;
         }
-
+        /*
         [HttpGet]
         [Route("getAll")]
-        public IEnumerable<Research> GetAll([FromServices]IResearchRepository repository) 
+        public IEnumerable<Research> GetAll([FromBody] GetUserCommand userCommand, [FromServices] IResearchRepository repository)
         {
-            var name = User.Claims.FirstOrDefault(x => x.Type =="user_id")?.Value;
-            var user = new User(name, "", RoleNames.Default, "");
-            return repository.GetAll(user);
-        }
+            var name = User.Claims.FirstOrDefault(x => x.Type == u);
 
+            return repository.GetAll(userCommand);
+        }
+        
         [HttpGet]
         [Route("getAllDone")]
         public IEnumerable<Research> GetAllDone([FromServices] IResearchRepository repository)
@@ -76,13 +74,13 @@ namespace InnerJungle.Api.Controllers
         public GenericCommandResult Create([FromBody] CreateResearchCommand command, [FromServices] CreateResearchHandler handler)
         {
             var user = new User("", "", RoleNames.Default, "");
-         
+
             return (GenericCommandResult)handler.Handle(command);
         }
 
         [HttpPut]
         [Route("update")]
-        public GenericCommandResult Update([FromBody]UpdateResearchCommand command, [FromServices] UpdateResearchHandler handler)
+        public GenericCommandResult Update([FromBody] UpdateResearchCommand command, [FromServices] UpdateResearchHandler handler)
         {
             command.User = new User("", "", RoleNames.Default, "");
             return (GenericCommandResult)handler.Handle(command);
@@ -102,6 +100,6 @@ namespace InnerJungle.Api.Controllers
         {
             command.User = new User("", "", RoleNames.Default, "");
             return (GenericCommandResult)handler.Handle(command);
-        }
+        }*/
     }
 }

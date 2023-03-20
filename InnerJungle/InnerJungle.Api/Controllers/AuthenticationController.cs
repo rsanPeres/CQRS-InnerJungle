@@ -14,13 +14,6 @@ namespace InnerJungle.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost("register")]
-        public IActionResult Register(RegisterRequest request)
-        {
-            var command = new RegisterCommand();
-            AuthenticationResult authResult = _mediator.Send(command);
-
-            return Ok(authResult);
-        }
+        
     }
 }

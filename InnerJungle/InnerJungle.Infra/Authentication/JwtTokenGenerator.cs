@@ -36,7 +36,7 @@ namespace InnerJungle.Infra.Authentication
                 issuer: "InnerJungle",
                 expires: _dateTimeProvider.UtcNow.AddMinutes(60),
                 claims: claims,
-                signingCredentials:siginingCredentials);
+                signingCredentials: siginingCredentials);
 
             return new JwtSecurityTokenHandler().WriteToken(securityToken);
         }

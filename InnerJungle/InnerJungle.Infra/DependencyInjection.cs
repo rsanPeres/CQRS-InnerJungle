@@ -1,11 +1,10 @@
 ﻿using InnerJungle.Application.Common.Interfaces.Authentication;
+using InnerJungle.Application.Common.Interfaces.Persistence;
 using InnerJungle.Application.Common.Interfaces.Services;
 using InnerJungle.Infra.Authentication;
+using InnerJungle.Infra.Persistence;
 using InnerJungle.Infra.Services;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Configuration;
-using InnerJungle.Application.Common.Interfaces.Persistence;
-using InnerJungle.Infra.Persistence;
 
 namespace InnerJungle.Infra
 {

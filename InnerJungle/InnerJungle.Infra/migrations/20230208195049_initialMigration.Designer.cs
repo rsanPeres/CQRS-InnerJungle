@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace InnerJungle.Infra.migrations
 {
-    [DbContext(typeof(ResearchContext))]
+    [DbContext(typeof(DBContext))]
     [Migration("20230208195049_initialMigration")]
     partial class initialMigration
     {

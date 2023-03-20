@@ -1,29 +1,29 @@
 ﻿using InnerJungle.Domain.Entities;
-using InnerJungle.Domain.Interfaces;
+using InnerJungle.Domain.Interfaces.Repositories;
 using InnerJungle.Domain.Queries;
 using InnerJungle.Infra.Contexts;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace InnerJungle.Repository.Repositories
 {
-    public class ResearchRepository : IResearchRepository
+    public class ResearchRepository : GenericRepository<Research>, IResearchRepository
     {
-        private readonly ResearchContext _context;
-
-        public ResearchRepository(ResearchContext context)
+        public ResearchRepository(DBContext context, ILogger logger) : base(context, logger)
         {
-            _context = context;
         }
 
-        public void Create(Research research)
+        public override async Task<IEnumerable<Research>> GetAll(User user)
         {
-            _context.Researches.Add(research);
-            SaveChanges();
-        }
-
-        public IEnumerable<Research> GetAll(User user)
-        {
-            return _context.Researches.AsNoTracking().Where(ResearchQueries.GetAll(user)).OrderBy(x => x.Start);
+            try
+            {
+                return DbSet.Where(ResearchQueries.GetAll(user)).OrderBy(x => x.Start);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "{Repo} All function error", typeof(ResearchRepository));
+                return Enumerable.Empty<Research>();
+            }
         }
 
         public IEnumerable<Research> GetAllDone(User user)
@@ -37,25 +37,49 @@ namespace InnerJungle.Repository.Repositories
 
         }
 
-        public Research GetById(Guid id, User user)
-        {
-            return _context.Researches.FirstOrDefault(x => x.Id == id && x.User == user);
-        }
-
         public IEnumerable<Research> GetByPeriod(User user, DateTime date, bool done)
         {
             return _context.Researches.AsNoTracking().Where(ResearchQueries.GetByPeriod(user, date, done)).OrderBy(x => x.Start);
         }
 
-        public void SaveChanges()
+        public override async Task<bool> Update(Research research)
         {
-            _context.SaveChanges();
+            try
+            {
+                var existingResearch = await DbSet.Where(x => x.Id == research.Id).FirstOrDefaultAsync();
+                if (existingResearch == null)
+                {
+                    return await Create(research);
+                }
+                existingResearch.UpdateTitle(research.Title);
+                DbSet.Update(existingResearch);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "{Repo} Update function error", typeof(ResearchRepository));
+                return false;
+            }
         }
 
-        public void Update(Research research)
+        public override async Task<bool> Delete(Guid id)
         {
-            _context.Entry(research).State = EntityState.Modified;
-            SaveChanges();
+            try
+            {
+                var existingResearch = await GetById(id);
+                if (existingResearch == null)
+                {
+                    return false;
+                }
+
+                DbSet.Remove(existingResearch);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "{Repo} Delete function error", typeof(ResearchRepository));
+                return false;
+            }
         }
 
 

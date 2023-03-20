@@ -17,4 +17,8 @@
     <ProjectReference Include="..\InnerJungle.Domain\InnerJungle.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Authentication\Commands\Register\" />
+  </ItemGroup>
+
 </Project>

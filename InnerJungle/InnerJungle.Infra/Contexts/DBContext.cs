@@ -3,16 +3,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace InnerJungle.Infra.Contexts
 {
-    public class ResearchContext : DbContext
+    public class DBContext : DbContext
     {
         public DbSet<Research> Researches { get; set; }
-        public ResearchContext(DbContextOptions<ResearchContext> options) : base(options) { }
+        public DBContext(DbContextOptions<DBContext> options) : base(options) { }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(ResearchContext).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(DBContext).Assembly);
             modelBuilder.Ignore("Notification");
         }
 
