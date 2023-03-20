@@ -21,7 +21,7 @@ namespace InnerJungle.Domain.Handlers
             command.Validate();
             if (command.IsValid)
             {
-                var research = new Research(command.Title, command.User);
+                var research = new Research(command.Title);
 
                 await _unitOfWork.Research.Create(research);
                 await _unitOfWork.CompleteAsync();

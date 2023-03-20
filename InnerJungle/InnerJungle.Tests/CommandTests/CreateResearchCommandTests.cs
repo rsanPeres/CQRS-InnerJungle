@@ -7,8 +7,8 @@ namespace InnerJungle.Tests.CommandTests
 {
     public class CreateResearchCommandTests
     {
-        private readonly CreateResearchCommand _invalidCommand = new CreateResearchCommand("", true, new User("", "", RoleNames.Default, ""));
-        private readonly CreateResearchCommand _validCommand = new CreateResearchCommand("inner jungle", true, new User("", "", RoleNames.Default, ""));
+        private readonly CreateResearchCommand _invalidCommand = new CreateResearchCommand("", true, new User("", "", RoleNames.Default, "", "", "", ""));
+        private readonly CreateResearchCommand _validCommand = new CreateResearchCommand("inner jungle", true, new User("", "", RoleNames.Default, "", "", "", ""));
 
         public CreateResearchCommandTests()
         {

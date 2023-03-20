@@ -16,13 +16,13 @@ namespace InnerJungle
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
-        public WebApplicationBuilder builder = WebApplication.CreateBuilder();
 
         public void ConfigureServices(IServiceCollection services)
         {

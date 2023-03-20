@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace InnerJungle.Domain.Entities
+﻿namespace InnerJungle.Domain.Entities
 {
     public class Institution : Entity
     {
+        public string Name { get; private set; }
+        public IEnumerable<Research> Researches { get; private set; }
         public Institution()
         {
 

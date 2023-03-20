@@ -1,25 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace InnerJungle.Domain.Entities
+﻿namespace InnerJungle.Domain.Entities
 {
     public class Research : ResearchBase
     {
         public User User { get; private set; }
         public Institution Institution { get; private set; }
         public Eletrode Eletrode { get; private set; }
-        public MicroorganismBase Microorganism { get; private set; }
+        public IEnumerable<MicroorganismBase> Microorganism { get; private set; }
         public IEnumerable<ExperimentBase> Experiments { get; private set; }
-        public IEnumerable<CalibrationCurve> CalibrationCurves { get; private set; }
-        public bool Done { get; private set; }
+        public IEnumerable<ElectrochemicalExperiment> ElectrochemicalExperiments { get; private set; }
+        public CalibrationCurve CalibrationCurve { get; private set; }
+        public IEnumerable<Nanomaterial> Nanomaterials { get; private set; }
 
-        public Research(string title, User user) : base(title)
+        public Research(string title) : base(title)
         {
-            User = user;
         }
     }
 }

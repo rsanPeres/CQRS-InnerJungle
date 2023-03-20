@@ -1,9 +1,4 @@
 ﻿using InnerJungle.Domain.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InnerJungle.Domain.Entities
 {
@@ -13,12 +8,15 @@ namespace InnerJungle.Domain.Entities
         public DateTime DateStart { get; private set; }
         public DateTime DateEnd { get; private set; }
         public ExperimentStatus Status { get; private set; }
+        public IEnumerable<Eletrode> Eletrodes { get; private set; }
+        public MicroorganismBase Microorganism { get; private set; }
+        public IEnumerable<Nanomaterial> Nanomaterials { get; private set; }
 
 
         public ExperimentBase(string title)
         {
             Title = title;
-            DateStart= DateTime.Now;
+            DateStart = DateTime.Now;
         }
 
         public bool SetDateEnd(DateTime dateEnd)

@@ -1,11 +1,9 @@
-﻿using InnerJungle.Application.Authentication.Commands.User;
-using InnerJungle.Domain.Commands;
+﻿using InnerJungle.Domain.Commands;
+using InnerJungle.Domain.Commands.Contracts;
 using InnerJungle.Domain.Entities;
-using InnerJungle.Domain.Enums;
 using InnerJungle.Domain.Handlers;
 using InnerJungle.Domain.Interfaces.Repositories;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InnerJungle.Api.Controllers
@@ -20,16 +18,15 @@ namespace InnerJungle.Api.Controllers
         {
             _mediator = mediator;
         }
-        /*
+       
         [HttpGet]
         [Route("getAll")]
-        public IEnumerable<Research> GetAll([FromBody] GetUserCommand userCommand, [FromServices] IResearchRepository repository)
+        public IEnumerable<Research> GetAll([FromServices] IResearchRepository repository)
         {
-            var name = User.Claims.FirstOrDefault(x => x.Type == u);
 
-            return repository.GetAll(userCommand);
+            return new List<Research>();
         }
-        
+        /*
         [HttpGet]
         [Route("getAllDone")]
         public IEnumerable<Research> GetAllDone([FromServices] IResearchRepository repository)
@@ -68,16 +65,16 @@ namespace InnerJungle.Api.Controllers
 
             return repository.GetByPeriod(user, DateTime.Now.Date, true);
         }
-
+        */
         [HttpPost]
         [Route("create")]
-        public GenericCommandResult Create([FromBody] CreateResearchCommand command, [FromServices] CreateResearchHandler handler)
+        public async Task<GenericCommandResult> Create([FromBody] CreateResearchCommand command, [FromServices] CreateResearchHandler handler)
         {
-            var user = new User("", "", RoleNames.Default, "");
+            var user = new User("", "", Domain.Enums.RoleNames.Default, "", "", "", "");
 
-            return (GenericCommandResult)handler.Handle(command);
+            return (GenericCommandResult)handler.Handle(command).Result;
         }
-
+        /*
         [HttpPut]
         [Route("update")]
         public GenericCommandResult Update([FromBody] UpdateResearchCommand command, [FromServices] UpdateResearchHandler handler)

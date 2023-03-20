@@ -6,8 +6,8 @@ namespace InnerJungle.Tests.EntityTests
 {
     public class ResearchTests
     {
-        private readonly Research _validResearch = new Research("Inner Jungle", new User("","", RoleNames.Default, ""));
-        private readonly Research _invalidResearch = new Research("Inner Jungle", new User("", "", RoleNames.Default, ""));
+        private readonly Research _validResearch = new Research("Inner Jungle");
+        private readonly Research _invalidResearch = new Research("Inner Jungle");
 
         [Fact]
         public void Research_GivenAValidResearch_ShouldCreate()
