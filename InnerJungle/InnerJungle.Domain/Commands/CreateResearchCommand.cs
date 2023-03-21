@@ -1,21 +1,17 @@
-﻿using Flunt.Notifications;
-using Flunt.Validations;
+﻿using FluentValidation.Results;
 using InnerJungle.Domain.Commands.Contracts;
+using InnerJungle.Domain.Commands.Validators;
 using InnerJungle.Domain.Entities;
 
 namespace InnerJungle.Domain.Commands
 {
-    public class CreateResearchCommand : Notifiable<Notification>, ICommand
+    public class CreateResearchCommand : ICommand
     {
-        public string Title { get; set; }
-        public bool Done { get; set; }
-        public User User { get; set; }
+        public Research Research { get; set; }
 
-        public CreateResearchCommand(string title, bool done, User user)
+        public CreateResearchCommand(Research research)
         {
-            Title = title;
-            Done = done;
-            User = user;
+            Research = research;
         }
 
         public CreateResearchCommand()
@@ -23,13 +19,9 @@ namespace InnerJungle.Domain.Commands
 
         }
 
-        public void Validate()
+        public ValidationResult Validate()
         {
-            AddNotifications(
-                new Contract<Notification>()
-                .Requires()
-                .IsGreaterOrEqualsThan(Title, 4, "Title", "Discribe better the title")
-                );
+            return new CreateResearchCommandValidator().Validate(this);
         }
     }
 }

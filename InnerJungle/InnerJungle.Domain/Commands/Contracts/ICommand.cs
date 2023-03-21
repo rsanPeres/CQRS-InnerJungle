@@ -1,10 +1,9 @@
-﻿using Flunt.Notifications;
-using Flunt.Validations;
+﻿using FluentValidation.Results;
 
 namespace InnerJungle.Domain.Commands.Contracts
 {
     public interface ICommand
     {
-        public void Validate();
+        public ValidationResult Validate();
     }
 }

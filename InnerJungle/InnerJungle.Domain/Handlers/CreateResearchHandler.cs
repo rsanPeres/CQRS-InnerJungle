@@ -7,7 +7,7 @@ using InnerJungle.Domain.Interfaces.Repositories;
 
 namespace InnerJungle.Domain.Handlers
 {
-    public class CreateResearchHandler : Notifiable<Notification>, IHandler<CreateResearchCommand>
+    public class CreateResearchHandler : IHandler<CreateResearchCommand>
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -18,20 +18,19 @@ namespace InnerJungle.Domain.Handlers
         public async Task<ICommandResult> Handle(CreateResearchCommand command)
         {
             //fail fast validatiom
-            command.Validate();
-            if (command.IsValid)
+            
+            if (command.Validate().IsValid)
             {
-                var research = new Research(command.Title);
 
-                await _unitOfWork.Research.Create(research);
+                await _unitOfWork.Research.Create(command.Research);
                 await _unitOfWork.CompleteAsync();
 
-                return new GenericCommandResult(true, "saved Task", research);
+                return new GenericCommandResult(true, "saved Task", command.Research);
             }
             return new GenericCommandResult(
                 false,
                 "wrong task",
-                command.Notifications);
+                command.Research);
         }
     }
 }

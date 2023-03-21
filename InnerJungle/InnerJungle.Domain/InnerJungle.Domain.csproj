@@ -7,10 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.5.1" />
     <PackageReference Include="Flunt" Version="2.0.5" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Entities\DTO\" />
     <Folder Include="ExtensionMethods\" />
     <Folder Include="Interfaces\Authentication\" />
     <Folder Include="Interfaces\Services\" />

@@ -1,8 +1,9 @@
-﻿using InnerJungle.Domain.Commands;
-using InnerJungle.Domain.Commands.Contracts;
+﻿using FluentValidation;
+using InnerJungle.Controllers.Requests;
+using InnerJungle.Controllers.Responses;
+using InnerJungle.Domain.Commands;
 using InnerJungle.Domain.Entities;
 using InnerJungle.Domain.Handlers;
-using InnerJungle.Domain.Interfaces.Repositories;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,13 +19,39 @@ namespace InnerJungle.Api.Controllers
         {
             _mediator = mediator;
         }
-       
+
         [HttpGet]
         [Route("getAll")]
-        public IEnumerable<Research> GetAll([FromServices] IResearchRepository repository)
+        public async Task<IActionResult> GetAll()
         {
+            try
+            {
 
-            return new List<Research>();
+                return Ok();
+            }
+            catch (ValidationException e)
+            {
+                return BadRequest(e.Errors);
+            }
+
+        }
+
+        [HttpPost]
+        [Route("create")]
+        public async Task<IActionResult> Create([FromBody] CreateResearchRequest request)
+        {
+            try
+            {
+                request.Validate();
+                var research = request.CreateDomainObject();
+                var command = new CreateResearchCommand(research);
+                await _mediator.Send(command);
+                return Ok(new AsyncEntityResponse(command, research.Id));
+            }
+            catch (ValidationException e)
+            {
+                return BadRequest(e.Errors);
+            }
         }
         /*
         [HttpGet]
