@@ -13,17 +13,13 @@ namespace InnerJungle.Tests.QueriesTests
         public ResearchQuerieTests()
         {
             _researches= new List<Research>();
-            _researches.Add(new Research("research 1"));
-            _researches.Add(new Research("research 2"));
-            _researches.Add(new Research("research 1"));
-            _researches.Add(new Research("research 1"));
 
         }
 
         [Fact]
         public void GivenASearch_ShouldReturnDataFromInnerUser()
         {
-            var result = _researches.AsQueryable().Where(ResearchQueries.GetAll(new User("", "", RoleNames.Default, "", "", "", "")));
+            var result = _researches.AsQueryable().Where(ResearchQueries.GetAll(new User("", "", "", "")));
             Assert.NotNull(result);
             Assert.Equal(2, result.Count());
         }

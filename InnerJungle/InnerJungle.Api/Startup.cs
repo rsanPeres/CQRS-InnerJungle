@@ -1,4 +1,5 @@
 ﻿using InnerJungle.Application;
+using InnerJungle.Common.Errors;
 using InnerJungle.Domain.Commands;
 using InnerJungle.Domain.Handlers;
 using InnerJungle.Domain.Handlers.Contracts;
@@ -8,9 +9,12 @@ using InnerJungle.Infra.Contexts;
 using InnerJungle.Repository;
 using InnerJungle.Repository.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System.Reflection;
 
 namespace InnerJungle
 {
@@ -32,6 +36,7 @@ namespace InnerJungle
             services.AddDbContextPool<DBContext>(opt =>
             opt.UseSqlServer(Configuration.GetConnectionString("innerJungle")));
 
+            services.AddSingleton<ProblemDetailsFactory, InnerJungleProblemDetailsFactory>();
             services.AddTransient<IResearchRepository, ResearchRepository>();
             services.AddTransient<IHandler<CreateResearchCommand>, CreateResearchHandler>();
             services.AddTransient<IHandler<UpdateResearchCommand>, UpdateResearchHandler>();

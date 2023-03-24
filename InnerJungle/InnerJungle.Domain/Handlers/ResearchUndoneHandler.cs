@@ -19,7 +19,7 @@ namespace InnerJungle.Domain.Handlers
             command.Validate();
             if (command.IsValid)
             {
-                var research = _unitOfWork.Research.GetById(command.Id).Result;
+                var research = _unitOfWork.Research.GetById(command.Research.Id).Result;
                 if (research != null)
                 {
                     await _unitOfWork.Research.Update(research);

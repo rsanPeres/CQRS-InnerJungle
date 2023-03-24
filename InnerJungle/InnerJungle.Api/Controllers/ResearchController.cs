@@ -2,15 +2,15 @@
 using InnerJungle.Controllers.Requests;
 using InnerJungle.Controllers.Responses;
 using InnerJungle.Domain.Commands;
-using InnerJungle.Domain.Entities;
-using InnerJungle.Domain.Handlers;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InnerJungle.Api.Controllers
 {
     [ApiController]
     [Route("v1/researches")]
+    [Authorize]
     public class ResearchController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -43,10 +43,15 @@ namespace InnerJungle.Api.Controllers
             try
             {
                 request.Validate();
-                var research = request.CreateDomainObject();
-                var command = new CreateResearchCommand(research);
-                await _mediator.Send(command);
-                return Ok(new AsyncEntityResponse(command, research.Id));
+                if (User.Claims.FirstOrDefault(x => x.Type == request.User.FirstName)?.Value == request.User.FirstName)
+                {
+                    var research = request.CreateDomainObject();
+                    var command = new CreateResearchCommand(research);
+                    await _mediator.Send(command);
+                    return Ok(new AsyncEntityResponse(command, research.Id));
+                }
+                return BadRequest(new AsyncEntityResponse(null, request.User.Id));
+
             }
             catch (ValidationException e)
             {
@@ -92,7 +97,7 @@ namespace InnerJungle.Api.Controllers
 
             return repository.GetByPeriod(user, DateTime.Now.Date, true);
         }
-        */
+        
         [HttpPost]
         [Route("create")]
         public async Task<GenericCommandResult> Create([FromBody] CreateResearchCommand command, [FromServices] CreateResearchHandler handler)

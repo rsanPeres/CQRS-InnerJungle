@@ -17,6 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\InnerJungle.Application\InnerJungle.Application.csproj" />
+    <ProjectReference Include="..\InnerJungle.Domain\InnerJungle.Domain.csproj" />
     <ProjectReference Include="..\InnerJungle.Infra\InnerJungle.Infra.csproj" />
     <ProjectReference Include="..\InnerJungle.Repository\InnerJungle.Repository.csproj" />
   </ItemGroup>

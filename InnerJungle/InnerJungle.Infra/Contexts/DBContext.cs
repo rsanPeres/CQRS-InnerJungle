@@ -1,6 +1,5 @@
 ﻿using InnerJungle.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using System.Security.Cryptography.X509Certificates;
 
 namespace InnerJungle.Infra.Contexts
 {

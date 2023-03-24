@@ -7,8 +7,8 @@ namespace InnerJungle.Tests.CommandTests
 {
     public class CreateResearchCommandTests
     {
-        private readonly CreateResearchCommand _invalidCommand = new CreateResearchCommand("", true, new User("", "", RoleNames.Default, "", "", "", ""));
-        private readonly CreateResearchCommand _validCommand = new CreateResearchCommand("inner jungle", true, new User("", "", RoleNames.Default, "", "", "", ""));
+        private readonly CreateResearchCommand _invalidCommand = new CreateResearchCommand();
+        private readonly CreateResearchCommand _validCommand = new CreateResearchCommand();
 
         public CreateResearchCommandTests()
         {
@@ -19,13 +19,13 @@ namespace InnerJungle.Tests.CommandTests
         [Fact]
         public void CreateResearchCommand_GivenAnInvalidCommand()
         {
-            Assert.False(_invalidCommand.IsValid);
+            Assert.False(_invalidCommand.Validate().IsValid);
         }
 
         [Fact]
         public void CreateResearchCommand_GivenAnValidCommand()
         {
-            Assert.True(_validCommand.IsValid);
+            Assert.True(_validCommand.Validate().IsValid);
         }
     }
 }

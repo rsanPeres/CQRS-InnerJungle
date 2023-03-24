@@ -1,19 +1,14 @@
 ﻿using InnerJungle.Domain.Commands;
-using InnerJungle.Domain.Entities;
-using InnerJungle.Domain.Enums;
 using InnerJungle.Domain.Handlers;
-using InnerJungle.Domain.Interfaces;
 using InnerJungle.Domain.Interfaces.Repositories;
-using InnerJungle.Tests.Repositories;
 using Moq;
-using Xunit;
 
 namespace InnerJungle.Tests.HandlerTests
 {
     public class CreateResearchHandlerTests
     {
-        private readonly CreateResearchCommand _invalidCommand = new CreateResearchCommand("", true, new User("", "", RoleNames.Default, "","", "", ""));
-        private readonly CreateResearchCommand _validCommand = new CreateResearchCommand("inner jungle", true, new User("", "", RoleNames.Default, "", "", "", ""));
+        private readonly CreateResearchCommand _invalidCommand = new CreateResearchCommand();
+        private readonly CreateResearchCommand _validCommand = new CreateResearchCommand();
         private readonly CreateResearchHandler _handler;
         private readonly Mock<IResearchRepository> _repository;
 

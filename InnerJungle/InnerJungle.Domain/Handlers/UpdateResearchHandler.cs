@@ -19,10 +19,10 @@ namespace InnerJungle.Domain.Handlers
             command.Validate();
             if (command.IsValid)
             {
-                var research = _unitOfWork.Research.GetById(command.Id).Result;
+                var research = _unitOfWork.Research.GetById(command.Research.Id).Result;
                 if (research != null)
                 {
-                    research.UpdateTitle(command.Title);
+                    research.UpdateTitle(command.Research.Title);
                     await _unitOfWork.Research.Update(research);
                     return new GenericCommandResult(true, "saved Task", research);
                 }

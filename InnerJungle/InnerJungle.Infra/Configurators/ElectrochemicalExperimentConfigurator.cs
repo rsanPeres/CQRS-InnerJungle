@@ -1,6 +1,6 @@
 ﻿using InnerJungle.Domain.Entities;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace InnerJungle.Infra.Configurators
 {

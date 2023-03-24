@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="ErrorOr" Version="1.0.0" />
     <PackageReference Include="FluentValidation" Version="11.5.1" />
     <PackageReference Include="Flunt" Version="2.0.5" />
   </ItemGroup>
@@ -16,6 +17,7 @@
     <Folder Include="ExtensionMethods\" />
     <Folder Include="Interfaces\Authentication\" />
     <Folder Include="Interfaces\Services\" />
+    <Folder Include="Common\Errors\ErrorsUser.cs" />
   </ItemGroup>
 
 </Project>

@@ -1,24 +1,19 @@
-﻿using Flunt.Notifications;
-using Flunt.Validations;
+﻿using FluentValidation.Results;
+using Flunt.Notifications;
 using InnerJungle.Domain.Commands.Contracts;
+using InnerJungle.Domain.Commands.Validators;
 using InnerJungle.Domain.Entities;
-using InnerJungle.Domain.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InnerJungle.Domain.Commands
 {
     public class MarkResearchAsDoneCommand : Notifiable<Notification>, ICommand
     {
-        public Guid Id { get; set; }
+        public Research Research { get; set; }
         public User User { get; set; }
 
-        public MarkResearchAsDoneCommand(Guid id, User user)
+        public MarkResearchAsDoneCommand(Research research, User user)
         {
-            Id = id;
+            Research = research;
             User = user;
         }
 
@@ -27,12 +22,9 @@ namespace InnerJungle.Domain.Commands
 
         }
 
-        public void Validate()
+        public ValidationResult Validate()
         {
-            AddNotifications(
-                new Contract<Notification>()
-                .Requires()
-            );
+            return new MarkResearchAsDoneCommandValidator().Validate(this);
         }
     }
 }

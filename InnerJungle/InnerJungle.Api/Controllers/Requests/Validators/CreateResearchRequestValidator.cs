@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using InnerJungle.Domain.Entities.Validators;
 
 namespace InnerJungle.Controllers.Requests.Validators
 {
@@ -6,7 +7,10 @@ namespace InnerJungle.Controllers.Requests.Validators
     {
         public CreateResearchRequestValidator() 
         {
-            RuleFor(x => x.)
+            RuleFor(x => x.Eletrode).NotNull().SetValidator(new EletrodeValidator());
+            RuleFor(x => x.User).NotNull().SetValidator(new UserValidator());
+            RuleFor(x => x.Institution).NotNull().SetValidator(new InstitutionValidator());
+            RuleFor(x => x.Title).NotNull().MinimumLength(10);
         }
     }
 }

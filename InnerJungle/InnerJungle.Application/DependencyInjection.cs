@@ -1,5 +1,4 @@
-﻿using InnerJungle.Application.Services.Authentication.Commands;
-using InnerJungle.Application.Services.Authentication.Queries;
+﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace InnerJungle.Application
@@ -8,8 +7,7 @@ namespace InnerJungle.Application
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
-            services.AddScoped<IAuthenticationCommandService,AuthenticationCommandService>();
-            services.AddScoped<IAuthenticationQueryService, AuthenticationQueryService>();
+            services.AddMediatR(typeof(DependencyInjection).Assembly);
             return services;
         }
     }

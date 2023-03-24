@@ -42,10 +42,10 @@ namespace InnerJungle.Tests.Repositories
             throw new NotImplementedException();
         }
 
-        public Research GetById(Guid id, User user)
-        {
-            return new Research("inner");
-        }
+        //public Research GetById(Guid id, User user)
+        //{
+        //    return n;
+        //}
 
         public Task<Research> GetById(Guid id)
         {

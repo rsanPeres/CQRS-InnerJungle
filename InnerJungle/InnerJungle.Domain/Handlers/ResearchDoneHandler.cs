@@ -19,7 +19,7 @@ namespace InnerJungle.Domain.Handlers
             command.Validate();
             if (command.IsValid)
             {
-                var research = await _unitOfWork.Research.GetById(command.Id);
+                var research = await _unitOfWork.Research.GetById(command.Research.Id);
                 if (research != null)
                 {
                     research.MarkAsDone();

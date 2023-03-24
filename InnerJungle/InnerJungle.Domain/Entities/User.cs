@@ -15,16 +15,9 @@ namespace InnerJungle.Domain.Entities
         public string Cpf { get; private set; }
         public IEnumerable<Research> Researches { get; private set; } 
 
-        public User(string userName, string password, RoleNames role, string cpf, string firstName, string lastName, string email)
+        public User(string firstName, string lastName, string email, string password)
         {
-            Validate(userName, password, role, cpf);
-            if (!IsValid)
-                return;
-
-            UserName = userName;
             Password = password;
-            Role = role;
-            Cpf = cpf;
             FirstName = firstName;
             LastName = lastName;
             Email = email;

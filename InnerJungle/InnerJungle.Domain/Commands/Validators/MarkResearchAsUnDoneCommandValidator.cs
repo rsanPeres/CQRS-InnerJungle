@@ -3,11 +3,12 @@ using InnerJungle.Domain.Entities.Validators;
 
 namespace InnerJungle.Domain.Commands.Validators
 {
-    public class CreateResearchCommandValidator : AbstractValidator<CreateResearchCommand>
+    internal class MarkResearchAsUnDoneCommandValidator : AbstractValidator<MarkResearchAsUnDoneCommand>
     {
-        public CreateResearchCommandValidator()
+        public MarkResearchAsUnDoneCommandValidator()
         {
             RuleFor(x => x.Research).NotNull().SetValidator(new ResearchValidator());
+            RuleFor(x => x.User).NotNull().SetValidator(new UserValidator());
         }
     }
 }

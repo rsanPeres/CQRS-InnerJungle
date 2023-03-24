@@ -7,9 +7,12 @@
         public decimal Price { get; private set; }
         public int Amount { get; private set; }
 
-        public Eletrode(string type)
+        public Eletrode(string type, string name, decimal price, int amount)
         {
             Type = type;
+            Name = name;
+            Price = price;
+            Amount = amount;
         }
     }
 }

@@ -4,9 +4,9 @@
     {
         public string Name { get; private set; }
         public IEnumerable<Research> Researches { get; private set; }
-        public Institution()
+        public Institution(string name)
         {
-
+            Name = name;
         }
     }
 }

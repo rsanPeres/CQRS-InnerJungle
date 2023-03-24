@@ -1,13 +1,4 @@
-﻿using FluentResults;
-using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace InnerJungle.Infra.Tools
+﻿namespace InnerJungle.Infra.Tools
 {
     public struct Option<T>
     {
@@ -18,10 +9,10 @@ namespace InnerJungle.Infra.Tools
         public bool IsNone => !hasValue;
         public T Value
         {
-            get 
+            get
             {
                 if (!hasValue) throw new NullReferenceException();
-                return value; 
+                return value;
             }
         }
 
@@ -39,7 +30,7 @@ namespace InnerJungle.Infra.Tools
 
         public override bool Equals(object obj)
         {
-            if(obj is Option<T>)
+            if (obj is Option<T>)
             {
                 var opt = (Option<T>)obj;
                 return hasValue ? opt.IsSome && opt.Value.Equals(value) : opt.IsNone;
