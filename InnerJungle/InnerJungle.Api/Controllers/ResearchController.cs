@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using InnerJungle.Controllers;
 using InnerJungle.Controllers.Requests;
 using InnerJungle.Controllers.Responses;
 using InnerJungle.Domain.Commands;
@@ -10,8 +11,7 @@ namespace InnerJungle.Api.Controllers
 {
     [ApiController]
     [Route("v1/researches")]
-    [Authorize]
-    public class ResearchController : ControllerBase
+    public class ResearchController : ApiController
     {
         private readonly IMediator _mediator;
 

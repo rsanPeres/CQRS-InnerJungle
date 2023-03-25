@@ -5,11 +5,13 @@ using InnerJungle.Controllers.Requests;
 using InnerJungle.Controllers.Responses;
 using InnerJungle.Domain.Common.Errors;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InnerJungle.Controllers
 {
     [Route("v1/Auth")]
+    [AllowAnonymous]
     public class AuthenticationController : ApiController
     {
         private readonly ISender _mediator;
@@ -20,13 +22,14 @@ namespace InnerJungle.Controllers
         }
 
         [HttpPost("register")]
+        [AllowAnonymous]
         public async Task<IActionResult> Register(RegisterRequest request)
         {
-            var command = new RegisterCommand(request.FistName, request.LastName, request.Email, request.Password);
-            var authResult = await _mediator.Send(command);
-            return authResult.Match(
-                authResult => Ok(MapAuthResult(authResult)),
-                errors => Problem(errors));
+                var command = new RegisterCommand(request.FistName, request.LastName, request.Email, request.Password);
+                var authResult = await _mediator.Send(command);
+                return authResult.Match(
+                    authResult => Ok(MapAuthResult(authResult)),
+                    errors => Problem(errors));    
         }
 
         [HttpPost("login")]
