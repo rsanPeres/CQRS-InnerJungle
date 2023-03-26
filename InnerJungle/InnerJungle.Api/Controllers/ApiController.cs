@@ -11,9 +11,19 @@ namespace InnerJungle.Controllers
     [Route("apiController")]
     public class ApiController : ControllerBase
     {
+        private readonly ILogger<ApiController> _logger;
+
+        public ApiController(ILogger<ApiController> logger)
+        {
+            _logger = logger;
+        }
+
+
         protected IActionResult Problem(List<Error> errors)
         {
-            if(errors.Count is 0)
+            _logger.LogInformation("hellow");
+            _logger.LogInformation("test");
+            if (errors.Count is 0)
             {
                 return Problem();
             }

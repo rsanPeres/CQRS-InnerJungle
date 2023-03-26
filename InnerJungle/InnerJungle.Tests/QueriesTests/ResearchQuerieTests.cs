@@ -19,7 +19,7 @@ namespace InnerJungle.Tests.QueriesTests
         [Fact]
         public void GivenASearch_ShouldReturnDataFromInnerUser()
         {
-            var result = _researches.AsQueryable().Where(ResearchQueries.GetAll(new User("", "", "", "")));
+            var result = _researches.AsQueryable().Where(ResearchQueries.GetAll(new User("", "", "", "", "")));
             Assert.NotNull(result);
             Assert.Equal(2, result.Count());
         }

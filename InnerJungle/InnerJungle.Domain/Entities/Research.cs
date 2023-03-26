@@ -14,11 +14,8 @@ namespace InnerJungle.Domain.Entities
         public CalibrationCurve CalibrationCurve { get; private set; } 
         public IEnumerable<Nanomaterial> Nanomaterials { get; private set; }
 
-        public Research(string title, User user, Institution institution, Eletrode eletrode) : base(title)
+        public Research(string title) : base(title)
         {
-            User = user;
-            Institution = institution;
-            Eletrode = eletrode;
             Microorganism = new List<MicroorganismBase>();
             Experiments = new List<ExperimentBase>();
             ElectrochemicalExperiments = new List<ElectrochemicalExperiment>();

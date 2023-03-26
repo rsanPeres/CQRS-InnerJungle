@@ -15,7 +15,7 @@ namespace InnerJungle.Api.Controllers
     {
         private readonly IMediator _mediator;
 
-        public ResearchController(IMediator mediator)
+        public ResearchController(ILogger<ApiController> logger,IMediator mediator) : base(logger)
         {
             _mediator = mediator;
         }

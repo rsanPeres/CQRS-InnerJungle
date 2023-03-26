@@ -4,7 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <StartupObject>InneJungle.Program</StartupObject>
+    <StartupObject>InnerJungle.Program</StartupObject>
     <OutputType>WinExe</OutputType>
   </PropertyGroup>
 

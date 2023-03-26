@@ -1,9 +1,9 @@
 ﻿using ErrorOr;
 using InnerJungle.Application.Authentication.Common;
 using InnerJungle.Application.Common.Interfaces.Authentication;
-using InnerJungle.Application.Common.Interfaces.Persistence;
 using InnerJungle.Domain.Common.Errors;
 using InnerJungle.Domain.Entities;
+using InnerJungle.Domain.Interfaces.Repositories;
 using MediatR;
 
 namespace InnerJungle.Application.Authentication.Queries.Login

@@ -11,6 +11,7 @@ namespace InnerJungle.Repository
         {
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IResearchRepository, ResearchRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
             return services;
         }
     }

@@ -16,20 +16,19 @@ namespace InnerJungle.Controllers
     {
         private readonly ISender _mediator;
 
-        public AuthenticationController(ISender mediator)
+        public AuthenticationController(ILogger<ApiController> logger, ISender mediator) : base(logger)
         {
             _mediator = mediator;
         }
 
         [HttpPost("register")]
-        [AllowAnonymous]
         public async Task<IActionResult> Register(RegisterRequest request)
         {
-                var command = new RegisterCommand(request.FistName, request.LastName, request.Email, request.Password);
-                var authResult = await _mediator.Send(command);
-                return authResult.Match(
-                    authResult => Ok(MapAuthResult(authResult)),
-                    errors => Problem(errors));    
+            var command = new RegisterCommand(request.FistName, request.LastName, request.Email, request.Password, request.Cpf, request.UserName);
+            var authResult = await _mediator.Send(command);
+            return authResult.Match(
+                authResult => Ok(MapAuthResult(authResult)),
+                errors => Problem(errors));
         }
 
         [HttpPost("login")]

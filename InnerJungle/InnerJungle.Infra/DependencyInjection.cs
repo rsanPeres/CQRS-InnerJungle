@@ -1,14 +1,12 @@
-﻿using InnerJungle.Application.Common.Interfaces.Persistence;
+﻿using InnerJungle.Application.Common.Interfaces.Authentication;
 using InnerJungle.Application.Common.Interfaces.Services;
 using InnerJungle.Infra.Authentication;
-using InnerJungle.Infra.Persistence;
 using InnerJungle.Infra.Services;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Configuration;
-using InnerJungle.Application.Common.Interfaces.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
 namespace InnerJungle.Infra
@@ -20,7 +18,6 @@ namespace InnerJungle.Infra
             services.AddAuth(configuration);
             services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
 
-            services.AddScoped<IUserRepository, UserRepository>();
             return services;
         }
 
@@ -36,11 +33,11 @@ namespace InnerJungle.Infra
                 .AddJwtBearer(opt => opt.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuer = true,
-                    ValidateAudience= true,
-                    ValidateLifetime= true,
-                    ValidateIssuerSigningKey= true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
                     ValidIssuer = JwtSettings.Issuer,
-                    ValidAudience= JwtSettings.Audience,
+                    ValidAudience = JwtSettings.Audience,
                     IssuerSigningKey = new SymmetricSecurityKey(
                         Encoding.UTF8.GetBytes(JwtSettings.Secret))
                 });

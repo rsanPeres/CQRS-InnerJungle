@@ -5,6 +5,10 @@ namespace InnerJungle.Controllers
     [Route("innerJungleController")]
     public class InnerJungleController : ApiController
     {
+        public InnerJungleController(ILogger<ApiController> logger) : base(logger)
+        {
+        }
+
         [HttpGet]
         public IActionResult ListResearch()
         {

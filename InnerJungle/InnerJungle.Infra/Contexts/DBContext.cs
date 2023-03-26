@@ -11,6 +11,7 @@ namespace InnerJungle.Infra.Contexts
         public DbSet<Institution> Institutions { get; set; }
         public DbSet<ExperimentBase> ExperimentBases { get; set; }
         public DbSet<Eletrode> Eletrodes { get; set; }
+        public DbSet<User> Users { get; set; }
         public DBContext(DbContextOptions<DBContext> options) : base(options) { }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { }
