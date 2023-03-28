@@ -6,8 +6,8 @@ namespace InnerJungle.Domain.Entities.Validators
     {
         public UserValidator() 
         {
-            RuleFor(x => x.Email).NotNull().NotEmpty().MinimumLength(5);
-            RuleFor(x => x.Password).NotEmpty().MinimumLength(8);
+            RuleFor(x => x.Email).NotNull().NotEmpty();
+            RuleFor(x => x.Password).NotEmpty();
         }
     }
 }

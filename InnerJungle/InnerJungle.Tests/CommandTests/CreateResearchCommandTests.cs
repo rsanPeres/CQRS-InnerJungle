@@ -1,6 +1,4 @@
-﻿using InnerJungle.Domain.Commands;
-using InnerJungle.Domain.Entities;
-using InnerJungle.Domain.Enums;
+﻿using InnerJungle.Application.Researches.Commands;
 using Xunit;
 
 namespace InnerJungle.Tests.CommandTests

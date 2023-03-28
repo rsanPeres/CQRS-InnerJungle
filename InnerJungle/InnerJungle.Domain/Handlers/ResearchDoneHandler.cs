@@ -3,6 +3,7 @@ using InnerJungle.Domain.Commands.Contracts;
 using InnerJungle.Domain.Commands;
 using InnerJungle.Domain.Handlers.Contracts;
 using InnerJungle.Domain.Interfaces.Repositories;
+using InnerJungle.Domain.Entities;
 
 namespace InnerJungle.Domain.Handlers
 {

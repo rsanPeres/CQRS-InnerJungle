@@ -22,7 +22,7 @@ namespace InnerJungle.Controllers.Requests
 
         public Research CreateDomainObject()
         {
-            return new Research(Title);
+            return new Research(Title, Eletrode, Institution, User);
         }
     }
 }

@@ -18,4 +18,8 @@
     <ProjectReference Include="..\InnerJungle.Domain\InnerJungle.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Researches\Queries\" />
+  </ItemGroup>
+
 </Project>

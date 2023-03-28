@@ -6,9 +6,9 @@ namespace InnerJungle.Domain.Commands
     {
         public bool Success { get; set; }
         public string Message { get; set; }
-        public object Data { get; set; }
+        public Object Data { get; set; }
 
-        public GenericCommandResult(bool success, string message, object data)
+        public GenericCommandResult(bool success, string message, Object data)
         {
             Success = success;
             Message = message;

@@ -20,7 +20,6 @@ namespace InnerJungle.Infra.Contexts
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(DBContext).Assembly);
             modelBuilder.Ignore("Notification");
-            modelBuilder.Entity<ElectrochemicalExperiment>().Ignore(x => x.Notifications);
             modelBuilder.Ignore<Flunt.Notifications.Notification>();
         }
 

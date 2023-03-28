@@ -13,6 +13,12 @@ namespace InnerJungle.Repository.Repositories
         {
         }
 
+        public override Task<bool> Create(Research entity)
+        {
+
+            return base.Create(entity);
+        }
+
         public override async Task<IEnumerable<Research>> GetAll(User user)
         {
             try

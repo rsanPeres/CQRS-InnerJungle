@@ -1,4 +1,5 @@
 using InnerJungle.Application;
+using InnerJungle.Domain;
 using InnerJungle.Domain.Interfaces.Repositories;
 using InnerJungle.Infra;
 using InnerJungle.Infra.Contexts;
@@ -19,7 +20,9 @@ class Program
                 .AddApplication()
                 .AddPresentation()
                 .AddRepository()
+                .AddDomain()
                 .AddInfrastructure(builder.Configuration);
+
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
 

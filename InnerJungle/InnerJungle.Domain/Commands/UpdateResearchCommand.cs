@@ -9,6 +9,7 @@ namespace InnerJungle.Domain.Commands
 {
     public class UpdateResearchCommand : Notifiable<Notification>, ICommand
     {
+        public Guid Id { get; set; }
         public Research Research { get; set; }
         public User User { get; set; }
 
@@ -21,6 +22,11 @@ namespace InnerJungle.Domain.Commands
         public ValidationResult Validate()
         {
             return new UpdateResearchCommandValidator().Validate(this);
+        }
+
+        public Guid GetId()
+        {
+            return Id;
         }
     }
 }

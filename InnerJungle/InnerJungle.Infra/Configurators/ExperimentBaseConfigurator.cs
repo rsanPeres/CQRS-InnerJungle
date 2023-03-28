@@ -13,7 +13,7 @@ namespace InnerJungle.Infra.Configurators
             builder
                 .HasKey(x => x.Id);
             builder
-                .Property(x => x.Title).HasColumnType("varchar(50)").IsRequired();
+                .Property(x => x.Title).HasColumnType("varchar(50)");
 
             builder.Ignore(x => x.Notifications);
             builder.Ignore(x => x.IsValid);

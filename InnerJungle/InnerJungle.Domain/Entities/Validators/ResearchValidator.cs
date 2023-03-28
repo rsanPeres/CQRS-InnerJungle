@@ -6,7 +6,8 @@ namespace InnerJungle.Domain.Entities.Validators
     {
         public ResearchValidator() 
         { 
-            RuleFor(x => x.Eletrode).NotNull().SetValidator(new EletrodeValidator());
+            RuleFor(x => x.Title).NotEmpty().NotNull();
+            //RuleFor(x => x.Eletrode).NotNull().SetValidator(new EletrodeValidator());
         }
     }
 }

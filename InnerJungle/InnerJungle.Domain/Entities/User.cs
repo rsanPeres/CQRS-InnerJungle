@@ -13,7 +13,7 @@ namespace InnerJungle.Domain.Entities
         public string Email { get; private set; }
         public RoleNames Role { get; private set; }
         public string Cpf { get; private set; }
-        public IEnumerable<Research> Researches { get; private set; } 
+        public ICollection<Research> Researches { get; private set; } 
 
         public User(string firstName, string lastName, string email, string password, string cpf, string userName)
         {
@@ -23,6 +23,7 @@ namespace InnerJungle.Domain.Entities
             Email = email;
             Cpf= cpf;
             UserName = userName;
+            Researches= new List<Research>();
         }
 
         public void SetEmployeeRole(RoleNames role)

@@ -30,6 +30,7 @@ namespace InnerJungle.Infra.Authentication
                 new Claim(JwtRegisteredClaimNames.FamilyName, user.FirstName),
                 new Claim(JwtRegisteredClaimNames.GivenName, user.LastName),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(JwtRegisteredClaimNames.Aud, "InnerJungle")
             };
 
             var securityToken = new JwtSecurityToken(

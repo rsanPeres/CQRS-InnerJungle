@@ -13,9 +13,9 @@ namespace InnerJungle.Infra.Configurators
             builder
                 .HasKey(x => x.Id);
             builder
-                .Property(x => x.Name).HasColumnType("varchar(50)").IsRequired();
+                .Property(x => x.Name).HasColumnType("varchar(50)");
             builder
-                .Property(x => x.Species).HasColumnType("varchar(50)").IsRequired();
+                .Property(x => x.Species).HasColumnType("varchar(50)");
             builder
                 .Property(x => x.Family).IsRequired();
 

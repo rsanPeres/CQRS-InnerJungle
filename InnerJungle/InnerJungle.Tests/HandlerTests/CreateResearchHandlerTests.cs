@@ -1,5 +1,4 @@
-﻿using InnerJungle.Domain.Commands;
-using InnerJungle.Domain.Handlers;
+﻿using InnerJungle.Application.Researches.Commands;
 using InnerJungle.Domain.Interfaces.Repositories;
 using Moq;
 
@@ -9,7 +8,7 @@ namespace InnerJungle.Tests.HandlerTests
     {
         private readonly CreateResearchCommand _invalidCommand = new CreateResearchCommand();
         private readonly CreateResearchCommand _validCommand = new CreateResearchCommand();
-        private readonly CreateResearchHandler _handler;
+        private readonly CreateResearchCommandHandler _handler;
         private readonly Mock<IResearchRepository> _repository;
 
         //public CreateResearchHandlerTests()

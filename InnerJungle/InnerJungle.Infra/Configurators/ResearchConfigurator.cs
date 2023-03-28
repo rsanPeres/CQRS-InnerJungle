@@ -19,6 +19,8 @@ namespace InnerJungle.Infra.Configurators
                 .WithMany(x => x.Researches);
             builder.HasOne(x => x.User)
                 .WithMany(x => x.Researches);
+            builder.HasOne(x => x.Eletrode)
+                .WithMany(x => x.Researches);
 
             builder.Ignore(x => x.Notifications);
             builder.Ignore(x => x.IsValid);
